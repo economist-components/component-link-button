@@ -3,11 +3,15 @@
   padding: 20px
     20px;
   padding: 20px
-    var(--grid-gutter-xl);
-  padding: var(--grid-spacing-rabbit)
+    36px;
+  padding: 20px
+    2rem;
+  padding: 0.714em
     20px;
-  padding: var(--grid-spacing-rabbit)
-    var(--grid-gutter-xl);
+  padding: 0.714em
+    36px;
+  padding: 0.714em
+    2rem;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -198,6 +202,12 @@ body {
 /**
  * Colors
  */
+
+/**
+ * Css grid variables
+ */
+
+/* stylelint-disable number-max-precision */
 
 .link-button-icon--video.link-button--icon-background {
   background-color: #5f9ea0;
