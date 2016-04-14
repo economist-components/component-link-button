@@ -32,6 +32,16 @@ describe('LinkButton', () => {
     it('renders href', () => {
       mount(<LinkButton href="http://www.economist.com" />)
         .find('a').should.have.attr('href', 'http://www.economist.com');
+      mount(
+        <LinkButton icon={{
+          icon: 'video',
+          color: 'honolulu',
+          'useBackground': true }}
+          href="http://www.economist.com"
+        >
+          Use icon as background
+        </LinkButton>
+      ).find('a').should.have.attr('href', 'http://www.economist.com');
     });
 
     it('renders className', () => {

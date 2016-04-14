@@ -2,6 +2,7 @@
 @import '@economist/component-typography';
 @import '@economist/component-icon/backgrounds/video.css';
 @import '@economist/component-palette';
+@import '@economist/component-grid';
 
 :root {
   --link-button--styled-font-family: var(--fontfamily-sans);

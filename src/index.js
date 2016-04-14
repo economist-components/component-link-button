@@ -23,7 +23,7 @@ export default function Button(props) {
     extraClassNames.push('link-button--shadow');
   }
   let content = children;
-  let linkProps = { ...props };
+  const linkProps = { ...props };
   if (icon) {
     extraClassNames.push('link-button--icon');
     extraClassNames.push(`link-button-icon--${ icon.icon }`);
@@ -45,14 +45,7 @@ export default function Button(props) {
       linkProps.style = { backgroundRepeat: 'no-repeat' };
     }
     // We don't want the icon prop to spread on <a> tag.
-    linkProps = {
-      className,
-      children,
-      disabled,
-      shadow,
-      unstyled,
-      i13nModel,
-    };
+    Reflect.deleteProperty(linkProps, 'icon');
   }
 
   linkProps.role = 'button';
