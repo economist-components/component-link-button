@@ -106,7 +106,7 @@
   "dependencies": {
     "@economist/component-icon": "^5.0.0",
     "@economist/component-palette": "^1.2.1",
-    "react": "^0.14.8",
+    "react": "^15.0.2",
     "react-i13n": "^2.0.12"
   },
   "devDependencies": {
