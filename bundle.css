@@ -37,11 +37,19 @@
   background-color: #b6b6b6;
 }
 
+/* stylelint-disable no-indistinguishable-colors */
+
+/* because that's the design */
+
 .link-button--shadow {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
 }
 
+/* stylelint-enable no-indistinguishable-colors */
+
 /* stylelint-disable selector-no-type */
+
+/* because we won't know the class on the svg */
 
 .link-button__group svg {
   vertical-align: bottom;
@@ -53,7 +61,13 @@
   vertical-align: middle;
 }
 
-/* stylelint-disable custom-property-pattern, number-max-precision */
+/* stylelint-disable custom-property-pattern, number-max-precision, value-keyword-case */
+
+/* */
+
+/* stylelint-disable value-keyword-case */
+
+/* too many components refer to EconSans */
 
 @font-face {
   font-family: EconSans;
@@ -163,6 +177,8 @@
 
 /* stylelint-disable selector-no-type */
 
+/* setting base font size on html - no default selector */
+
 html {
   font-size: 18px;
   line-height: 1.35;
@@ -202,6 +218,12 @@ body {
 /**
  * Colors
  */
+
+/* stylelint-disable no-indistinguishable-colors */
+
+/* to pass linting against --color-thimphu --color-berlin */
+
+/* stylelint-enable no-indistinguishable-colors */
 
 /**
  * Css grid variables
