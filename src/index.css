@@ -19,11 +19,17 @@
   background-color: var(--link-button--disabled-background, #c0c0c0);
 }
 
+/* stylelint-disable no-indistinguishable-colors */
+/* because that's the design */
+
 .link-button--shadow {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
 }
 
+/* stylelint-enable no-indistinguishable-colors */
+
 /* stylelint-disable selector-no-type */
+/* because we won't know the class on the svg */
 
 .link-button__group svg {
   vertical-align: bottom;
