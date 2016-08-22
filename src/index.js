@@ -8,7 +8,9 @@ function defaultPreventer(event) {
   event.preventDefault();
 }
 
+/* eslint-disable complexity */
 export default function Button(props) {
+/* eslint-enable complexity */
   const { className, children, disabled, shadow, icon, unstyled, i13nModel } = props;
   const extraClassNames = className ? className.split(/\s+/g) : [];
   let onClick = props.onClick;
@@ -48,7 +50,9 @@ export default function Button(props) {
     Reflect.deleteProperty(linkProps, 'icon');
   }
 
-  linkProps.role = 'button';
+  if (props.buttonRole) {
+    linkProps.role = props.buttonRole;
+  }
   linkProps.onClick = onClick;
   linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
 
@@ -64,7 +68,7 @@ export default function Button(props) {
 }
 
 Button.propTypes = {
-  href: React.PropTypes.string.isRequired,
+  href: React.PropTypes.string,
   className: React.PropTypes.string,
   children: React.PropTypes.node,
   onClick: React.PropTypes.func,
@@ -74,4 +78,5 @@ Button.propTypes = {
   icon: React.PropTypes.shape(Icon.propTypes),
   // i13n genuinely takes any object
   i13nModel: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  buttonRole: React.PropTypes.string,
 };
