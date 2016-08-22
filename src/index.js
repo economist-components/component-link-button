@@ -53,6 +53,7 @@ export default function Button(props) {
   if (props.buttonRole) {
     linkProps.role = props.buttonRole;
   }
+  const LinkComponent = props.linkComponent || 'a';
   linkProps.onClick = onClick;
   linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
 
@@ -64,7 +65,7 @@ export default function Button(props) {
     });
     return (<I13nLink {...linkProps}>{content}</I13nLink>);
   }
-  return (<a {...linkProps}>{content}</a>);
+  return (<LinkComponent {...linkProps}>{content}</LinkComponent>);
 }
 
 Button.propTypes = {
@@ -79,4 +80,5 @@ Button.propTypes = {
   // i13n genuinely takes any object
   i13nModel: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
   buttonRole: React.PropTypes.string,
+  linkComponent: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
 };
