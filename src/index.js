@@ -58,7 +58,7 @@ export default function Button(props) {
   linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
 
   if (i13nModel) {
-    const I13nLink = createI13nNode('a', {
+    const I13nLink = createI13nNode(LinkComponent, {
       isLeafNode: true,
       bindClickEvent: true,
       follow: true,
