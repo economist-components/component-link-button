@@ -8,7 +8,9 @@ function defaultPreventer(event) {
   event.preventDefault();
 }
 
+/* eslint-disable complexity */
 export default function Button(props) {
+/* eslint-enable complexity */
   const { className, children, disabled, shadow, icon, unstyled, i13nModel } = props;
   const extraClassNames = className ? className.split(/\s+/g) : [];
   let onClick = props.onClick;
@@ -48,23 +50,26 @@ export default function Button(props) {
     Reflect.deleteProperty(linkProps, 'icon');
   }
 
-  linkProps.role = 'button';
+  if (props.buttonRole) {
+    linkProps.role = props.buttonRole;
+  }
+  const LinkComponent = props.LinkComponent || 'a';
   linkProps.onClick = onClick;
   linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
 
   if (i13nModel) {
-    const I13nLink = createI13nNode('a', {
+    const I13nLink = createI13nNode(LinkComponent, {
       isLeafNode: true,
       bindClickEvent: true,
       follow: true,
     });
     return (<I13nLink {...linkProps}>{content}</I13nLink>);
   }
-  return (<a {...linkProps}>{content}</a>);
+  return (<LinkComponent {...linkProps}>{content}</LinkComponent>);
 }
 
 Button.propTypes = {
-  href: React.PropTypes.string.isRequired,
+  href: React.PropTypes.string,
   className: React.PropTypes.string,
   children: React.PropTypes.node,
   onClick: React.PropTypes.func,
@@ -74,4 +79,6 @@ Button.propTypes = {
   icon: React.PropTypes.shape(Icon.propTypes),
   // i13n genuinely takes any object
   i13nModel: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  buttonRole: React.PropTypes.string,
+  LinkComponent: React.PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
