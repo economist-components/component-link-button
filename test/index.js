@@ -49,6 +49,13 @@ describe('LinkButton', () => {
       .find('a').should.have.className('testing');
     });
 
+    it('does not render unneeded attributes', () => {
+      mount(<LinkButton />)
+      .find('a').should.not.have.attr('unstyled');
+      mount(<LinkButton />)
+      .find('a').should.not.have.attr('internal');
+    });
+
   });
 
 });
