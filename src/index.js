@@ -55,17 +55,19 @@ export default function Button(props) {
   }
   const LinkComponent = props.LinkComponent || 'a';
   linkProps.onClick = onClick;
-  linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
-
+  const filteredProps = {};
+  filteredProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
+  filteredProps.href = linkProps.href;
+  filteredProps.target = linkProps.target;
   if (i13nModel) {
     const I13nLink = createI13nNode(LinkComponent, {
       isLeafNode: true,
       bindClickEvent: true,
       follow: true,
     });
-    return (<I13nLink {...linkProps}>{content}</I13nLink>);
+    return (<I13nLink {...filteredProps}>{content}</I13nLink>);
   }
-  return (<LinkComponent {...linkProps}>{content}</LinkComponent>);
+  return (<LinkComponent {...filteredProps}>{content}</LinkComponent>);
 }
 
 Button.propTypes = {
