@@ -56,7 +56,7 @@ export default function Button(props) {
   const LinkComponent = props.LinkComponent || 'a';
   linkProps.onClick = onClick;
   linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
-
+  Reflect.deleteProperty(linkProps, 'unstyled');
   if (i13nModel) {
     const I13nLink = createI13nNode(LinkComponent, {
       isLeafNode: true,
