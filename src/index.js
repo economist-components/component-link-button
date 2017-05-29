@@ -8,6 +8,12 @@ function defaultPreventer(event) {
   event.preventDefault();
 }
 
+function handleKeyDown(onClick, event) {
+  if (event.code === 'Enter' || event.code === 'Space') {
+    onClick(event);
+  }
+}
+
 /* eslint-disable complexity */
 export default function Button(props) {
 /* eslint-enable complexity */
@@ -56,11 +62,14 @@ export default function Button(props) {
   const LinkComponent = props.LinkComponent || 'a';
   linkProps.onClick = onClick;
   linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
+  linkProps.role = 'button';
+  linkProps.tabIndex = '0';
+  linkProps.onKeyDown = handleKeyDown.bind(null, onClick);
   Reflect.deleteProperty(linkProps, 'unstyled');
   if (i13nModel) {
     const I13nLink = createI13nNode(LinkComponent, {
       isLeafNode: true,
-      bindClickEvent: true,
+      bindClickEvent: false,
       follow: true,
     });
     return (<I13nLink {...linkProps}>{content}</I13nLink>);
