@@ -1,5 +1,6 @@
 import Icon from '@economist/component-icon';
 import React from 'react';
+import PropTypes from 'prop-types';
 /* eslint-disable id-match */
 /* eslint-disable  react/display-name */
 import { createI13nNode } from 'react-i13n';
@@ -56,6 +57,7 @@ export default function Button(props) {
     Reflect.deleteProperty(linkProps, 'icon');
   }
 
+  Reflect.deleteProperty(linkProps, 'shadow');
   if (props.buttonRole) {
     linkProps.role = props.buttonRole;
   }
@@ -78,16 +80,16 @@ export default function Button(props) {
 }
 
 Button.propTypes = {
-  href: React.PropTypes.string,
-  className: React.PropTypes.string,
-  children: React.PropTypes.node,
-  onClick: React.PropTypes.func,
-  disabled: React.PropTypes.bool,
-  shadow: React.PropTypes.bool,
-  unstyled: React.PropTypes.bool,
-  icon: React.PropTypes.shape(Icon.propTypes),
+  href: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node,
+  onClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  shadow: PropTypes.bool,
+  unstyled: PropTypes.bool,
+  icon: PropTypes.shape(Icon.propTypes),
   // i13n genuinely takes any object
-  i13nModel: React.PropTypes.object, // eslint-disable-line react/forbid-prop-types
-  buttonRole: React.PropTypes.string,
-  LinkComponent: React.PropTypes.any, // eslint-disable-line react/forbid-prop-types
+  i13nModel: PropTypes.object, // eslint-disable-line react/forbid-prop-types
+  buttonRole: PropTypes.string,
+  LinkComponent: PropTypes.any, // eslint-disable-line react/forbid-prop-types
 };
