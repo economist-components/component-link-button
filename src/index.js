@@ -18,7 +18,9 @@ function handleKeyDown(onClick, event) {
 /* eslint-disable complexity */
 export default function Button(props) {
 /* eslint-enable complexity */
-  const { className, children, disabled, shadow, icon, unstyled, i13nModel } = props;
+  // We want to filter out the props, which concern only the Button and should not be passed on.
+  const { LinkComponent = 'a', icon, shadow, unstyled, i13nModel, children, ...linkProps } = props;
+  const { className, disabled } = props;
   const extraClassNames = className ? className.split(/\s+/g) : [];
   let onClick = props.onClick;
   if (!unstyled) {
@@ -32,7 +34,6 @@ export default function Button(props) {
     extraClassNames.push('link-button--shadow');
   }
   let content = children;
-  const linkProps = { ...props };
   if (icon) {
     extraClassNames.push('link-button--icon');
     extraClassNames.push(`link-button-icon--${ icon.icon }`);
@@ -53,28 +54,24 @@ export default function Button(props) {
       extraClassNames.push('link-button--icon-background');
       linkProps.style = { backgroundRepeat: 'no-repeat' };
     }
-    // We don't want the icon prop to spread on <a> tag.
-    Reflect.deleteProperty(linkProps, 'icon');
   }
 
-  Reflect.deleteProperty(linkProps, 'shadow');
   if (props.buttonRole) {
     linkProps.role = props.buttonRole;
   }
-  const LinkComponent = props.LinkComponent || 'a';
   linkProps.onClick = onClick;
   linkProps.className = [ 'link-button' ].concat(extraClassNames).join(' ');
   linkProps.role = 'button';
   linkProps.tabIndex = '0';
   linkProps.onKeyDown = handleKeyDown.bind(null, onClick);
-  Reflect.deleteProperty(linkProps, 'unstyled');
+
   if (i13nModel) {
     const I13nLink = createI13nNode(LinkComponent, {
       isLeafNode: true,
       bindClickEvent: false,
       follow: true,
     });
-    return (<I13nLink {...linkProps}>{content}</I13nLink>);
+    return (<I13nLink {...linkProps} i13nModel={i13nModel}>{content}</I13nLink>);
   }
   return (<LinkComponent {...linkProps}>{content}</LinkComponent>);
 }
